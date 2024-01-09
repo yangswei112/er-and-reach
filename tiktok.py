@@ -17,20 +17,20 @@ class TikTok:
         driver = webdriver.Chrome(options=chrome_options)
         er_dict = {}
         reach_dict = {}
-        for unem in self.username:
-            driver.get(f"https://hypeauditor.com/tiktok/{unem}/")
+        for uname in self.username:
+            driver.get(f"https://hypeauditor.com/tiktok/{uname}/")
             soup = BeautifulSoup(driver.page_source, "html.parser")
             try:
                 er_tag = soup.find_all(class_="metric metric")[2].getText()
                 reach_tag = soup.find_all(class_="metric metric")[1].getText()
             except IndexError:
-                er_dict[unem] = "Profile doesn't exist"
-                reach_dict[unem] = "Profile doesn't exist"
+                er_dict[uname] = "Profile doesn't exist"
+                reach_dict[uname] = "Profile doesn't exist"
             else:
                 er = er_tag.replace("ER\xa0\uf059", "").strip("%")
                 reach = reach_tag.replace("Avg. Views per post\xa0\uf059", "")
-                er_dict[unem] = float(er)
-                reach_dict[unem] = reach
+                er_dict[uname] = float(er)
+                reach_dict[uname] = reach
 
         driver.close()
         return er_dict, reach_dict

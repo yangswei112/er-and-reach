@@ -10,11 +10,11 @@ class Instagram:
     def get_er(self):
         loader = Instaloader()
         er_dict = {}
-        for unem in self.username:
+        for uname in self.username:
             try:
-                profile = Profile.from_username(loader.context, unem)
+                profile = Profile.from_username(loader.context, uname)
             except ConnectionException:
-                er_dict[unem] = "Profile doesn't exist"
+                er_dict[uname] = "Profile doesn't exist"
             else:
                 # Get posts and limit them with islice
                 posts = set(islice(profile.get_posts(), 12))
@@ -30,6 +30,6 @@ class Instagram:
                     total_num_posts += 1
 
                 engagement = float(total_num_likes + total_num_comments) / (num_followers * total_num_posts)
-                er_dict[unem] = round(engagement * 100, 2)
+                er_dict[uname] = round(engagement * 100, 2)
 
         return er_dict
