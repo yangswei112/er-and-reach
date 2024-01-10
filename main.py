@@ -1,9 +1,17 @@
 from instagram import Instagram
 from tiktok import TikTok
 
-# load file contains username
-with open("usernames.txt") as file:
-    uname = file.read().split("\n")
+# load file contains link profile
+with open("link_profile.txt") as file:
+    links = file.read().split("\n")
+    # extract username
+    uname = [
+        link.replace("https://www.tiktok.com/@", "").replace("https://www.instagram.com/", "").replace("https"
+                                                                                                       "://instagram"
+                                                                                                       ".com/",
+                                                                                                       "").split(
+            "?")[0].strip("/")
+        for link in links]
 
 # find IG ER
 ig = Instagram(username=uname)
