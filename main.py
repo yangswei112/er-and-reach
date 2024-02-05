@@ -30,9 +30,7 @@ elif "tiktok" in links[0]:
     er_reach_tt = tt.get_er_reach()
     er_tt = er_reach_tt[0]
     reach_tt = er_reach_tt[1]
-    er_reach_tt_results = pd.DataFrame({"Username": uname,
-                                        "ER": [str(er)+'%' for er in er_tt.values()],
-                                        'Reach': [convert_amount(reach) for reach in reach_tt.values()]})
-    er_reach_tt_results.to_csv("results.csv", index=False)
+
+
     print(er_tt)
     print(reach_tt)

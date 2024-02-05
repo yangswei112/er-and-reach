@@ -32,5 +32,5 @@ class TikTok:
                 er_dict[uname] = float(er)
                 reach_dict[uname] = reach
 
-        driver.close()
+        # driver.close()
         return er_dict, reach_dict
